@@ -1,0 +1,37 @@
+# Core ML dependencies
+#tensorflow==2.15.0
+#transformers>=4.40.0,<5.0.0
+#numpy>=1.26.4,<2.0.0
+
+# Web framework
+#flask>=3.0.2,<4.0.0
+#gunicorn>=21.2.0,<22.0.0
+
+# Utilities
+#requests>=2.31.0
+#scikit-learn>=1.3.0
+
+# Para debugging y monitoreo (opcional)
+#psutil>=5.9.0
+
+### CORRECCION
+#flask
+#gunicorn
+#tf-keras
+#tensorflow==2.19.0
+#transformers==4.52.4
+#numpy==2.0.2
+#requests==2.32.4
+#scikit-learn==1.6.1
+#psutil==7.0.0
+
+# requirements.txt (202506180251)
+# requirements.txt (para el entorno de producción con TF-IDF)
+flask
+gunicorn
+tf-keras
+tensorflow==2.16.1 # O la versión que estés usando
+numpy==1.26.4
+scikit-learn==1.5.0
+joblib
+nltk
