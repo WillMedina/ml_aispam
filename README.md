@@ -32,7 +32,7 @@ Un sistema completo de machine learning para la clasificación automática de co
 1. **Clonar el repositorio**
 ```bash
 git clone <tu-repositorio>
-cd spam-classifier
+cd ml_aispam
 ```
 
 2. **Crear entorno virtual**
@@ -108,12 +108,12 @@ drive.mount('/content/drive')
 1. **Construir la imagen Docker**
 ```bash
 cd app/
-docker build -t spam-classifier-api .
+docker build -t ml_aispam .
 ```
 
 2. **Ejecutar el contenedor localmente**
 ```bash
-docker run -p 8000:8000 spam-classifier-api
+docker run -p 8000:8000 ml_aispam
 ```
 
 La API estará disponible en `http://localhost:8000`
@@ -129,17 +129,17 @@ La API estará disponible en `http://localhost:8000`
 2. **Subir la imagen**
 ```bash
 # Etiquetar imagen
-docker tag spam-classifier-api your-registry/spam-classifier-api
+docker tag ml_aispam tu_usuario_de_docker/ml_aispam
 
 # Subir a registry (Docker Hub, DigitalOcean Container Registry)
-docker push your-registry/spam-classifier-api
+docker push tu_usuario_de_docker/ml_aispam
 ```
 
 3. **Desplegar en el servidor**
 ```bash
-ssh root@your-droplet-ip
-docker pull your-registry/spam-classifier-api
-docker run -d -p 80:8000 --name spam-api your-registry/spam-classifier-api
+ssh root@TU_IP_DE_DROPLET_O_SERVER
+docker pull tu_usuario_de_docker/ml_aispam
+docker run -d -p 80:8000 --name ml_aispam tu_usuario_de_docker/ml_aispam
 ```
 
 #### Opción 2: DigitalOcean App Platform
@@ -170,18 +170,6 @@ Content-Type: application/json
 }
 ```
 
-### Predicción en Lote
-```http
-POST /predict/batch
-Content-Type: application/json
-
-{
-    "emails": [
-        "Meeting scheduled for tomorrow at 3 PM",
-        "URGENT: Claim your lottery winnings now!"
-    ]
-}
-```
 
 ### Estado de Salud
 ```http
@@ -195,7 +183,7 @@ GET /health
 ```javascript
 // Ejemplo con JavaScript
 async function classifyEmail(emailText) {
-    const response = await fetch('https://your-api-url.com/predict', {
+    const response = await fetch('https://TU_IP_DE_DROPLET_O_SERVER/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -217,7 +205,7 @@ import axios from 'axios';
 export const SpamClassifier = {
     async classify(emailText) {
         try {
-            const response = await axios.post('https://your-api-url.com/predict', {
+            const response = await axios.post('https://TU_IP_DE_DROPLET_O_SERVER/predict', {
                 text: emailText
             });
             return response.data;
@@ -242,7 +230,7 @@ class SpamClassifierService {
         val json = gson.toJson(requestBody)
         
         val request = Request.Builder()
-            .url("https://your-api-url.com/predict")
+            .url("https://TU_IP_DE_DROPLET_O_SERVER/predict")
             .post(json.toRequestBody("application/json".toMediaType()))
             .build()
             
@@ -269,7 +257,7 @@ Retorna métricas como:
 
 Los logs están disponibles en:
 - Contenedor: `docker logs spam-api`
-- Archivo: `/var/log/spam-classifier.log`
+- Archivo: `/var/log/ML_AISPAM_LOG.log`
 
 ## 🔧 Configuración
 
@@ -321,17 +309,3 @@ curl -X POST "http://localhost:8000/predict" \
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Ver `LICENSE` para más detalles.
-
-## 📞 Soporte
-
-- 📧 Email: tu-email@ejemplo.com
-- 🐛 Issues: [GitHub Issues](https://github.com/tu-usuario/spam-classifier/issues)
-- 📖 Documentación: [Wiki del proyecto](https://github.com/tu-usuario/spam-classifier/wiki)
-
----
-
-**¿Problemas con el despliegue?** Revisa la sección de [troubleshooting](TROUBLESHOOTING.md) o abre un issue.
