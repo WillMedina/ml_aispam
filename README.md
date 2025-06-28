@@ -240,23 +240,12 @@ class SpamClassifierService {
 }
 ```
 
-## 📊 Monitoreo y Métricas
-
-### Métricas Disponibles
-```http
-GET /metrics
-```
-
-Retorna métricas como:
-- Número total de predicciones
-- Tiempo promedio de respuesta
-- Distribución de clasificaciones
-- Uso de memoria y CPU
+## 📊 Monitoreo
 
 ### Logging
 
 Los logs están disponibles en:
-- Contenedor: `docker logs spam-api`
+- Contenedor: `docker logs ml_aispam`
 - Archivo: `/var/log/ML_AISPAM_LOG.log`
 
 ## 🔧 Configuración
